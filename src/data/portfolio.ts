@@ -60,7 +60,7 @@ export const projectsData = [
     "featured": true,
     "live_url": "",
     "github_url": "",
-    "is_ongoing": false
+    "is_ongoing": true
   },
   {
     "id": "3321e202-3669-4a14-a5bb-bce4c9418a57",
