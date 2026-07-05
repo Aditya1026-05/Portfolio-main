@@ -2,7 +2,7 @@
 
 export const heroContent = {
   "headline1": "AI Engineer",
-  "headline2": "& Full Stack Developer",
+  "headline2": "& Software Developer",
   "tagline": "Hi, I'm Aditya Tayal — a AI/ML enthusiast and Full-Stack Developer passionate about building intelligent applications that solve real-world problems. I enjoy combining machine learning, modern web technologies, and clean software engineering to create scalable products with meaningful impact.",
   "available": true,
   "email": "adityatayal2610@gmail.com",
