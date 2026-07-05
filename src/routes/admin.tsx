@@ -497,15 +497,35 @@ function AdminPage() {
                       className="bg-white/5 border-white/10"
                     />
                   </div>
-                  <label className="flex items-center gap-2 text-sm text-muted-foreground select-none cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={hero.available}
-                      onChange={(e) => setHero({ ...hero, available: e.target.checked })}
-                      className="rounded bg-white/5 border-white/10"
-                    />
-                    Show "Available for opportunities" badge
-                  </label>
+                  <div className="flex flex-col gap-2.5 pt-1">
+                    <label className="flex items-center gap-2 text-sm text-muted-foreground select-none cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={hero.open_for_full_time ?? false}
+                        onChange={(e) => setHero({ ...hero, open_for_full_time: e.target.checked })}
+                        className="rounded bg-white/5 border-white/10"
+                      />
+                      Open for full-time roles
+                    </label>
+                    <label className="flex items-center gap-2 text-sm text-muted-foreground select-none cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={hero.open_for_internships ?? false}
+                        onChange={(e) => setHero({ ...hero, open_for_internships: e.target.checked })}
+                        className="rounded bg-white/5 border-white/10"
+                      />
+                      Open for internships
+                    </label>
+                    <label className="flex items-center gap-2 text-xs text-muted-foreground/60 select-none cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={hero.available}
+                        onChange={(e) => setHero({ ...hero, available: e.target.checked })}
+                        className="rounded bg-white/5 border-white/10"
+                      />
+                      Show fallback "Available for opportunities" badge
+                    </label>
+                  </div>
                 </div>
               </div>
 

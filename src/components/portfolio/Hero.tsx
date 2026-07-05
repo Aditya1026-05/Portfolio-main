@@ -44,7 +44,7 @@ export function Hero({ onContact }: { onContact?: () => void }) {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
-        {hero.available && (
+        {(hero.open_for_full_time || hero.open_for_internships || hero.available) && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -55,7 +55,15 @@ export function Hero({ onContact }: { onContact?: () => void }) {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[oklch(0.85_0.05_240)] opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[oklch(0.85_0.05_240)]" />
             </span>
-            <span className="text-muted-foreground">Available for opportunities</span>
+            <span className="text-muted-foreground">
+              {hero.open_for_full_time && hero.open_for_internships
+                ? "Open for Full-time & Internships"
+                : hero.open_for_full_time
+                  ? "Open for Full-time roles"
+                  : hero.open_for_internships
+                    ? "Open for Internships"
+                    : "Available for opportunities"}
+            </span>
           </motion.div>
         )}
 
