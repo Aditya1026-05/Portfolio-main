@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
@@ -23,6 +23,8 @@ import {
   GraduationCap,
   User,
   Check,
+  Lock,
+  Loader2,
 } from "lucide-react";
 import {
   heroContent as initialHero,
@@ -49,6 +51,42 @@ function AdminPage() {
   const [projects, setProjects] = useState(initialProjects);
   const [skills, setSkills] = useState(initialSkills);
   const [timeline, setTimeline] = useState(initialTimeline);
+
+  // Auth states
+  const [passcode, setPasscode] = useState("");
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("admin_code_v1");
+    if (stored === "Aditya0898_") {
+      setIsAuthorized(true);
+    }
+    setReady(true);
+
+    // Auto-lock when exiting or navigating away from the page
+    return () => {
+      localStorage.removeItem("admin_code_v1");
+    };
+  }, []);
+
+  function handleUnlock(e: React.FormEvent) {
+    e.preventDefault();
+    if (passcode === "Aditya0898_") {
+      localStorage.setItem("admin_code_v1", "Aditya0898_");
+      setIsAuthorized(true);
+      toast.success("Unlocked successfully!");
+    } else {
+      toast.error("Incorrect passcode. Access denied.");
+    }
+  }
+
+  function handleLock() {
+    localStorage.removeItem("admin_code_v1");
+    setIsAuthorized(false);
+    setPasscode("");
+    toast.success("Locked admin panel.");
+  }
 
   // Editor states
   const [editingProjectIndex, setEditingProjectIndex] = useState<number | null>(null);
@@ -287,6 +325,64 @@ function AdminPage() {
     setTimeline(resorted);
   }
 
+  if (!ready) {
+    return (
+      <div className="min-h-screen bg-background text-foreground grid place-items-center">
+        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+
+  if (!isAuthorized) {
+    return (
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center p-6 selection:bg-white/10 selection:text-white">
+        <div className="glass-strong border-white/10 w-full max-w-[400px] rounded-3xl p-8 space-y-6 text-center shadow-[0_0_50px_rgba(255,255,255,0.02)]">
+          <div className="mx-auto w-12 h-12 rounded-2xl bg-white/5 border border-white/10 grid place-items-center text-white relative">
+            <Lock className="h-5 w-5 animate-pulse" />
+            <div className="absolute inset-0 rounded-2xl bg-white/5 border border-white/20 animate-pulse pointer-events-none" />
+          </div>
+          <div className="space-y-1.5">
+            <h2 className="font-display text-xl font-bold text-white">Enter Access Code</h2>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              This area is restricted. Enter your passcode to unlock the editor.
+            </p>
+          </div>
+          <form onSubmit={handleUnlock} className="space-y-4">
+            <div className="space-y-1.5 text-left">
+              <Label htmlFor="passcode-input" className="text-white/80">
+                Passcode
+              </Label>
+              <Input
+                id="passcode-input"
+                type="password"
+                required
+                value={passcode}
+                onChange={(e) => setPasscode(e.target.value)}
+                placeholder="••••••••"
+                className="bg-white/5 border-white/10 rounded-xl text-white placeholder:text-muted-foreground/40 text-center tracking-widest focus-visible:ring-1 focus-visible:ring-white/20"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-all hover:bg-white/90 cursor-pointer shadow-[0_0_30px_rgba(255,255,255,0.05)] hover:scale-[1.01]"
+            >
+              Unlock Dashboard
+            </button>
+          </form>
+          <div className="pt-2">
+            <Link
+              to="/"
+              className="text-xs text-muted-foreground hover:text-white underline transition-colors"
+            >
+              Back to Portfolio
+            </Link>
+          </div>
+        </div>
+        <Toaster theme="dark" position="bottom-right" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-white/10 selection:text-white pb-20">
       {/* Top Header Controls */}
@@ -310,6 +406,13 @@ function AdminPage() {
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={handleLock}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full glass hover:bg-white/10 transition-colors cursor-pointer text-muted-foreground hover:text-white"
+              title="Lock admin panel"
+            >
+              <Lock className="h-4 w-4" />
+            </button>
             <button
               onClick={handleSave}
               disabled={busy}
