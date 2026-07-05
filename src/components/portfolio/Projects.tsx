@@ -58,7 +58,7 @@ function ProjectCard({ project, index }: { project: ProjectRow; index: number })
     >
       {/* Ongoing Pulsing Light Badge */}
       {project.is_ongoing && (
-        <div className="absolute right-6 top-6 z-10 flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider text-emerald-400 border border-emerald-500/20 backdrop-blur">
+        <div className="absolute right-6 top-6 z-10 hidden md:flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider text-emerald-400 border border-emerald-500/20 backdrop-blur">
           <span className="relative flex h-1.5 w-1.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
@@ -95,8 +95,17 @@ function ProjectCard({ project, index }: { project: ProjectRow; index: number })
 
         <div className="flex flex-col justify-between gap-8 p-8 md:p-12 [direction:ltr]">
           <div>
-            <div className="mb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              {featured ? "Featured" : `Project ${displayId}`}
+            <div className="mb-3 flex items-center justify-between font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              <span>{featured ? "Featured" : `Project ${displayId}`}</span>
+              {project.is_ongoing && (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[9px] uppercase tracking-wider text-emerald-400 border border-emerald-500/20 backdrop-blur md:hidden">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                  </span>
+                  Ongoing
+                </span>
+              )}
             </div>
             <h3 className="font-display text-3xl font-bold leading-tight md:text-5xl">
               {project.title}

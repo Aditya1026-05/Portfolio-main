@@ -396,10 +396,10 @@ function AdminPage() {
               <ArrowLeft className="h-4 w-4" />
             </Link>
             <div>
-              <h1 className="font-display font-bold text-lg flex items-center gap-1.5 leading-none">
+              <h1 className="font-display font-bold text-sm sm:text-lg flex items-center gap-1.5 leading-none">
                 Portfolio Editor <Sparkles className="h-4 w-4 text-amber-400" />
               </h1>
-              <p className="text-[10px] text-muted-foreground font-mono mt-0.5">
+              <p className="text-[10px] text-muted-foreground font-mono mt-0.5 hidden sm:block">
                 Static local developer mode
               </p>
             </div>
@@ -416,14 +416,15 @@ function AdminPage() {
             <button
               onClick={handleSave}
               disabled={busy}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-semibold text-black transition-all hover:bg-white/90 hover:scale-[1.02] disabled:opacity-60 cursor-pointer shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-4 sm:px-5 py-2 sm:py-2.5 text-xs font-semibold text-black transition-all hover:bg-white/90 hover:scale-[1.02] disabled:opacity-60 cursor-pointer shadow-[0_0_30px_rgba(255,255,255,0.1)]"
             >
               {busy ? (
                 <span className="h-3.5 w-3.5 border-2 border-black border-t-transparent animate-spin rounded-full" />
               ) : (
                 <Save className="h-3.5 w-3.5" />
               )}
-              Save to Code File
+              <span className="hidden sm:inline">Save to Code File</span>
+              <span className="sm:hidden">Save</span>
             </button>
           </div>
         </div>
@@ -448,7 +449,7 @@ function AdminPage() {
         </div>
 
         <Tabs defaultValue="projects" className="w-full">
-          <TabsList className="glass-strong mb-8 flex flex-wrap gap-1 p-1 max-w-fit rounded-full">
+          <TabsList className="glass-strong mb-8 flex w-full overflow-x-auto gap-1 p-1 rounded-full md:max-w-fit scrollbar-none">
             <TabsTrigger value="hero" className="rounded-full px-4 py-2 text-xs font-medium">
               <User className="h-3.5 w-3.5 mr-1" /> Bio
             </TabsTrigger>
@@ -808,9 +809,9 @@ function AdminPage() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.3 }}
-                        className="glass flex items-center justify-between rounded-2xl p-4 gap-4"
+                        className="glass flex flex-col sm:flex-row sm:items-center justify-between rounded-2xl p-4 gap-4"
                       >
-                        <div className="min-w-0 flex-1">
+                        <div className="min-w-0 flex-1 w-full">
                           <div className="flex items-center gap-2">
                             <span className="text-xs font-mono font-bold text-muted-foreground bg-white/5 px-2 py-0.5 rounded">
                               #{index + 1}
@@ -843,7 +844,7 @@ function AdminPage() {
                         </div>
 
                         {/* Order & Edit buttons */}
-                        <div className="flex items-center gap-1.5 shrink-0">
+                        <div className="flex items-center gap-1.5 shrink-0 w-full sm:w-auto justify-end sm:justify-start border-t border-white/5 pt-2 sm:border-t-0 sm:pt-0">
                           <button
                             onClick={() => moveProject(index, "up")}
                             disabled={index === 0}
@@ -945,9 +946,9 @@ function AdminPage() {
                   {skills.map((s, index) => (
                     <div
                       key={s.id}
-                      className="glass p-4 rounded-2xl flex items-center justify-between gap-4"
+                      className="glass p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                     >
-                      <div>
+                      <div className="w-full">
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-mono font-bold text-muted-foreground">
                             #{index + 1}
@@ -966,7 +967,7 @@ function AdminPage() {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-1 shrink-0 w-full sm:w-auto justify-end sm:justify-start border-t border-white/5 pt-2 sm:border-t-0 sm:pt-0">
                         <button
                           onClick={() => moveSkill(index, "up")}
                           disabled={index === 0}
@@ -1135,9 +1136,9 @@ function AdminPage() {
                   {timeline.map((t, index) => (
                     <div
                       key={t.id}
-                      className="glass p-4 rounded-2xl flex items-start justify-between gap-4"
+                      className="glass p-4 rounded-2xl flex flex-col sm:flex-row sm:items-start justify-between gap-4"
                     >
-                      <div>
+                      <div className="w-full">
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-mono font-bold text-muted-foreground">
                             #{index + 1}
@@ -1151,7 +1152,7 @@ function AdminPage() {
                         </p>
                       </div>
 
-                      <div className="flex items-center gap-1 shrink-0">
+                      <div className="flex items-center gap-1 shrink-0 w-full sm:w-auto justify-end sm:justify-start border-t border-white/5 pt-2 sm:border-t-0 sm:pt-0">
                         <button
                           onClick={() => moveTimeline(index, "up")}
                           disabled={index === 0}
