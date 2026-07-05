@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import { useProjects, type ProjectRow } from "@/hooks/use-portfolio";
+import { ensureAbsoluteUrl } from "@/lib/utils";
 
 export function Projects() {
   const { data: projects } = useProjects();
@@ -135,9 +136,9 @@ function ProjectCard({ project, index }: { project: ProjectRow; index: number })
             {/* Live Demo and GitHub Repo Buttons */}
             {(project.live_url || project.github_url) && (
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                {project.live_url && (
+                 {project.live_url && (
                   <a
-                    href={project.live_url}
+                    href={ensureAbsoluteUrl(project.live_url)}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background transition-all hover:bg-foreground/90 hover:shadow-[0_0_20px_-3px_rgba(255,255,255,0.3)]"
@@ -147,7 +148,7 @@ function ProjectCard({ project, index }: { project: ProjectRow; index: number })
                 )}
                 {project.github_url && (
                   <a
-                    href={project.github_url}
+                    href={ensureAbsoluteUrl(project.github_url)}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-xs font-semibold text-foreground transition-all hover:bg-white/5"

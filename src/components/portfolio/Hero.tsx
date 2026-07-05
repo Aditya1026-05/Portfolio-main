@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Magnetic } from "./Magnetic";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { heroFallback, useSiteContent, type HeroContent } from "@/hooks/use-portfolio";
+import { ensureAbsoluteUrl } from "@/lib/utils";
 
 export function Hero({ onContact }: { onContact?: () => void }) {
   const sceneRef = useRef<HTMLDivElement>(null);
@@ -128,7 +129,7 @@ export function Hero({ onContact }: { onContact?: () => void }) {
 
           <div className="flex flex-wrap items-center gap-3 md:justify-end">
             <a
-              href={hero.github}
+              href={ensureAbsoluteUrl(hero.github)}
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
@@ -140,7 +141,7 @@ export function Hero({ onContact }: { onContact?: () => void }) {
               </span>
             </a>
             <a
-              href={hero.linkedin}
+              href={ensureAbsoluteUrl(hero.linkedin)}
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
@@ -163,7 +164,7 @@ export function Hero({ onContact }: { onContact?: () => void }) {
             </a>
             {hero.leetcode && (
               <a
-                href={hero.leetcode}
+                href={ensureAbsoluteUrl(hero.leetcode)}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LeetCode"

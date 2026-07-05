@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Sparkles, Code2, Circle, ArrowUpRight } from "lucide-react";
 import { useTimeline } from "@/hooks/use-portfolio";
+import { ensureAbsoluteUrl } from "@/lib/utils";
 
 const icons = [GraduationCap, Sparkles, Code2, Circle];
 const colors = [
@@ -84,7 +85,7 @@ export function Experience() {
                           )}
                           {item.certificate_url && (
                             <a
-                              href={item.certificate_url}
+                              href={ensureAbsoluteUrl(item.certificate_url)}
                               target="_blank"
                               rel="noreferrer"
                               className="rounded-full bg-white/10 hover:bg-white/15 border border-white/10 px-3 py-1 text-xs font-semibold text-white transition-all inline-flex items-center gap-1.5 hover:scale-[1.02]"

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Github, Linkedin, Mail, ArrowUp } from "lucide-react";
 import { Magnetic } from "./Magnetic";
 import { heroFallback, useSiteContent, type HeroContent } from "@/hooks/use-portfolio";
+import { ensureAbsoluteUrl } from "@/lib/utils";
 
 export function Contact({ onContact }: { onContact?: () => void }) {
   const hero = useSiteContent<HeroContent>("hero", heroFallback);
@@ -101,7 +102,7 @@ export function Footer() {
         </Magnetic>
         <div className="flex items-center gap-3">
           <a
-            href={hero.github}
+            href={ensureAbsoluteUrl(hero.github)}
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
@@ -113,7 +114,7 @@ export function Footer() {
             </span>
           </a>
           <a
-            href={hero.linkedin}
+            href={ensureAbsoluteUrl(hero.linkedin)}
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
@@ -136,7 +137,7 @@ export function Footer() {
           </a>
           {hero.leetcode && (
             <a
-              href={hero.leetcode}
+              href={ensureAbsoluteUrl(hero.leetcode)}
               target="_blank"
               rel="noreferrer"
               aria-label="LeetCode"
