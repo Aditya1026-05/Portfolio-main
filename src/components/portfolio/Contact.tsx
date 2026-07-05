@@ -105,26 +105,51 @@ export function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="grid h-9 w-9 place-items-center rounded-full glass hover:text-[oklch(0.85_0.05_240)]"
+            className="group flex h-9 w-9 hover:w-[105px] items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-2.5"
           >
-            <Github className="h-4 w-4" />
+            <Github className="h-4 w-4 shrink-0" />
+            <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-xs font-semibold text-white whitespace-nowrap">
+              GitHub
+            </span>
           </a>
           <a
             href={hero.linkedin}
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="grid h-9 w-9 place-items-center rounded-full glass hover:text-[oklch(0.85_0.05_240)]"
+            className="group flex h-9 w-9 hover:w-[115px] items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-2.5"
           >
-            <Linkedin className="h-4 w-4" />
+            <Linkedin className="h-4 w-4 shrink-0" />
+            <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-xs font-semibold text-white whitespace-nowrap">
+              LinkedIn
+            </span>
           </a>
           <a
             href={`mailto:${hero.email}`}
             aria-label="Email"
-            className="grid h-9 w-9 place-items-center rounded-full glass hover:text-[oklch(0.85_0.05_240)]"
+            className="group flex h-9 w-9 hover:w-[95px] items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-2.5"
           >
-            <Mail className="h-4 w-4" />
+            <Mail className="h-4 w-4 shrink-0" />
+            <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-xs font-semibold text-white whitespace-nowrap">
+              Email
+            </span>
           </a>
+          {hero.leetcode && (
+            <a
+              href={hero.leetcode}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LeetCode"
+              className="group flex h-9 w-9 hover:w-[115px] items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-2.5"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 shrink-0">
+                <path d="M13.483 0a1.374 1.374 0 0 0-.961.414l-9.777 9.778a3.73 3.73 0 0 0 0 5.284l1.405 1.406a1.48 1.48 0 0 0 2.094-.006l9.024-9.025a1.48 1.48 0 0 1 2.093 2.093l-5.7 5.7a1.48 1.48 0 0 0 0 2.093l.707.707a1.48 1.48 0 0 0 2.093 0l5.7-5.7a4.43 4.43 0 0 0 0-6.28L14.444.414A1.365 1.365 0 0 0 13.483 0zm-5.787 5.7a1.48 1.48 0 0 0 0 2.093l-1.9 1.9a1.48 1.48 0 0 1-2.093-2.093l1.9-1.9a1.48 1.48 0 0 0 0-2.093l-.707-.707a1.48 1.48 0 0 0-2.093 0l-1.9 1.9a4.43 4.43 0 0 0 0 6.28l5.7 5.7a1.48 1.48 0 0 0 2.093 0l.707-.707a1.48 1.48 0 0 0 0-2.093l-5.7-5.7a1.48 1.48 0 0 1 0-2.093l1.9-1.9a1.48 1.48 0 0 0 0-2.093l-.707-.707a1.48 1.48 0 0 0-2.093 0z" />
+              </svg>
+              <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-xs font-semibold text-white whitespace-nowrap">
+                LeetCode
+              </span>
+            </a>
+          )}
           <a
             href="/admin"
             aria-label="Admin"

@@ -562,6 +562,15 @@ function AdminPage() {
                       className="bg-white/5 border-white/10"
                     />
                   </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="leetcode">LeetCode URL</Label>
+                    <Input
+                      id="leetcode"
+                      value={hero.leetcode || ""}
+                      onChange={(e) => setHero({ ...hero, leetcode: e.target.value })}
+                      className="bg-white/5 border-white/10"
+                    />
+                  </div>
                   <div className="border-t border-white/5 pt-4 my-2" />
                   <div className="space-y-1.5">
                     <Label htmlFor="about-heading">About Paragraph Header</Label>

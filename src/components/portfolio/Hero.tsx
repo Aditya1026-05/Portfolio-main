@@ -89,39 +89,94 @@ export function Hero({ onContact }: { onContact?: () => void }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
-          className="mt-10 grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-end"
+          className="mt-8 grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center"
         >
-          <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            {hero.tagline.includes("Aditya Tayal") ? (
-              <>
-                {hero.tagline.split("Aditya Tayal")[0]}
-                <span className="text-white font-semibold">Aditya Tayal</span>
-                {hero.tagline.split("Aditya Tayal")[1]}
-              </>
-            ) : (
-              hero.tagline
-            )}
-          </p>
+          <div className="space-y-8">
+            <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+              {hero.tagline.includes("Aditya Tayal") ? (
+                <>
+                  {hero.tagline.split("Aditya Tayal")[0]}
+                  <span className="text-white font-semibold">Aditya Tayal</span>
+                  {hero.tagline.split("Aditya Tayal")[1]}
+                </>
+              ) : (
+                hero.tagline
+              )}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <Magnetic>
+                <a
+                  href="#work"
+                  className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-shadow hover:shadow-[0_0_40px_-5px_rgba(255,255,255,0.5)]"
+                >
+                  View my work
+                  <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <button
+                  type="button"
+                  onClick={onContact}
+                  className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:bg-white/5"
+                >
+                  Get in touch
+                </button>
+              </Magnetic>
+            </div>
+          </div>
 
           <div className="flex flex-wrap items-center gap-3 md:justify-end">
-            <Magnetic>
+            <a
+              href={hero.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="group flex h-10 w-10 hover:w-28 items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
+            >
+              <Github className="h-4 w-4 shrink-0" />
+              <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-sm font-semibold text-white whitespace-nowrap">
+                GitHub
+              </span>
+            </a>
+            <a
+              href={hero.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="group flex h-10 w-10 hover:w-32 items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
+            >
+              <Linkedin className="h-4 w-4 shrink-0" />
+              <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-sm font-semibold text-white whitespace-nowrap">
+                LinkedIn
+              </span>
+            </a>
+            <a
+              href={`mailto:${hero.email}`}
+              aria-label="Email"
+              className="group flex h-10 w-10 hover:w-[105px] items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
+            >
+              <Mail className="h-4 w-4 shrink-0" />
+              <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-sm font-semibold text-white whitespace-nowrap">
+                Email
+              </span>
+            </a>
+            {hero.leetcode && (
               <a
-                href="#work"
-                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-shadow hover:shadow-[0_0_40px_-5px_rgba(255,255,255,0.5)]"
+                href={hero.leetcode}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LeetCode"
+                className="group flex h-10 w-10 hover:w-[125px] items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
               >
-                View my work
-                <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 shrink-0">
+                  <path d="M13.483 0a1.374 1.374 0 0 0-.961.414l-9.777 9.778a3.73 3.73 0 0 0 0 5.284l1.405 1.406a1.48 1.48 0 0 0 2.094-.006l9.024-9.025a1.48 1.48 0 0 1 2.093 2.093l-5.7 5.7a1.48 1.48 0 0 0 0 2.093l.707.707a1.48 1.48 0 0 0 2.093 0l5.7-5.7a4.43 4.43 0 0 0 0-6.28L14.444.414A1.365 1.365 0 0 0 13.483 0zm-5.787 5.7a1.48 1.48 0 0 0 0 2.093l-1.9 1.9a1.48 1.48 0 0 1-2.093-2.093l1.9-1.9a1.48 1.48 0 0 0 0-2.093l-.707-.707a1.48 1.48 0 0 0-2.093 0l-1.9 1.9a4.43 4.43 0 0 0 0 6.28l5.7 5.7a1.48 1.48 0 0 0 2.093 0l.707-.707a1.48 1.48 0 0 0 0-2.093l-5.7-5.7a1.48 1.48 0 0 1 0-2.093l1.9-1.9a1.48 1.48 0 0 0 0-2.093l-.707-.707a1.48 1.48 0 0 0-2.093 0z" />
+                </svg>
+                <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-sm font-semibold text-white whitespace-nowrap">
+                  LeetCode
+                </span>
               </a>
-            </Magnetic>
-            <Magnetic>
-              <button
-                type="button"
-                onClick={onContact}
-                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:bg-white/5"
-              >
-                Get in touch
-              </button>
-            </Magnetic>
+            )}
           </div>
         </motion.div>
 
@@ -129,35 +184,8 @@ export function Hero({ onContact }: { onContact?: () => void }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.4 }}
-          className="mt-16 flex items-center justify-between border-t border-border/40 pt-6"
+          className="mt-16 flex items-center justify-end border-t border-border/40 pt-6"
         >
-          <div className="flex items-center gap-4">
-            <a
-              href={hero.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="grid h-10 w-10 place-items-center rounded-full glass hover:text-[oklch(0.85_0.05_240)]"
-            >
-              <Github className="h-4 w-4" />
-            </a>
-            <a
-              href={hero.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              className="grid h-10 w-10 place-items-center rounded-full glass hover:text-[oklch(0.85_0.05_240)]"
-            >
-              <Linkedin className="h-4 w-4" />
-            </a>
-            <a
-              href={`mailto:${hero.email}`}
-              aria-label="Email"
-              className="grid h-10 w-10 place-items-center rounded-full glass hover:text-[oklch(0.85_0.05_240)]"
-            >
-              <Mail className="h-4 w-4" />
-            </a>
-          </div>
           <div className="hidden font-mono text-xs uppercase tracking-widest text-muted-foreground md:block">
             Scroll to explore ↓
           </div>

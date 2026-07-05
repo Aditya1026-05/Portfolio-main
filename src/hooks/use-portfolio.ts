@@ -47,6 +47,7 @@ export type HeroContent = {
   email: string;
   github: string;
   linkedin: string;
+  leetcode?: string;
   open_for_internships?: boolean;
   open_for_full_time?: boolean;
 };

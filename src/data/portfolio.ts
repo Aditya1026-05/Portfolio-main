@@ -9,7 +9,8 @@ export const heroContent = {
   "github": "https://github.com/Aditya1026-05",
   "linkedin": "https://www.linkedin.com/in/aditya0898/",
   "open_for_internships": true,
-  "open_for_full_time": true
+  "open_for_full_time": true,
+  "leetcode": "Leetcode.com/Aditya1026_"
 };
 
 export const aboutContent = {
