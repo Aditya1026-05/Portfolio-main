@@ -25,8 +25,8 @@ function Index() {
         <Hero onContact={open} />
         <Marquee />
         <About />
-        <Skills />
         <Projects />
+        <Skills />
         <Experience />
         <Contact onContact={open} />
       </main>

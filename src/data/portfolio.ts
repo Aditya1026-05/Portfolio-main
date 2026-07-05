@@ -10,7 +10,8 @@ export const heroContent = {
   "linkedin": "https://www.linkedin.com/in/aditya0898/",
   "open_for_internships": true,
   "open_for_full_time": true,
-  "leetcode": "Leetcode.com/Aditya1026_"
+  "leetcode": "Leetcode.com/Aditya1026_",
+  "resume_url": "https://drive.google.com/file/d/1Tt_xY_AMC000sBi65VWnTBzG5OdZUQv8/view?usp=sharing"
 };
 
 export const aboutContent = {
@@ -92,7 +93,7 @@ export const projectsData = [
       "Streamlit",
       "SMOTEENN"
     ],
-    "year": "2024",
+    "year": "2025",
     "sort_order": 40,
     "featured": false,
     "live_url": "",
