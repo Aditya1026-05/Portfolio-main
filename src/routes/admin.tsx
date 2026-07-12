@@ -58,15 +58,25 @@ function AdminPage() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("admin_code_v1");
+    const stored = localStorage.getItem("admin_code_v1") || sessionStorage.getItem("admin_code_v1");
     if (stored === "Aditya0898_") {
       setIsAuthorized(true);
     }
     setReady(true);
 
-    // Auto-lock when exiting or navigating away from the page
-    return () => {
+    const handleLockEvent = () => {
       localStorage.removeItem("admin_code_v1");
+      sessionStorage.removeItem("admin_code_v1");
+    };
+
+    // Auto-lock when tab closes, page reloads, or navigating away
+    window.addEventListener("beforeunload", handleLockEvent);
+    window.addEventListener("pagehide", handleLockEvent);
+
+    return () => {
+      handleLockEvent();
+      window.removeEventListener("beforeunload", handleLockEvent);
+      window.removeEventListener("pagehide", handleLockEvent);
     };
   }, []);
 
@@ -74,6 +84,7 @@ function AdminPage() {
     e.preventDefault();
     if (passcode === "Aditya0898_") {
       localStorage.setItem("admin_code_v1", "Aditya0898_");
+      sessionStorage.setItem("admin_code_v1", "Aditya0898_");
       setIsAuthorized(true);
       toast.success("Unlocked successfully!");
     } else {
@@ -83,6 +94,7 @@ function AdminPage() {
 
   function handleLock() {
     localStorage.removeItem("admin_code_v1");
+    sessionStorage.removeItem("admin_code_v1");
     setIsAuthorized(false);
     setPasscode("");
     toast.success("Locked admin panel.");
@@ -512,7 +524,9 @@ function AdminPage() {
                       <input
                         type="checkbox"
                         checked={hero.open_for_internships ?? false}
-                        onChange={(e) => setHero({ ...hero, open_for_internships: e.target.checked })}
+                        onChange={(e) =>
+                          setHero({ ...hero, open_for_internships: e.target.checked })
+                        }
                         className="rounded bg-white/5 border-white/10"
                       />
                       Open for internships

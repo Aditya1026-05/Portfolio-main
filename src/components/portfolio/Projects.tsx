@@ -57,7 +57,6 @@ function ProjectCard({ project, index }: { project: ProjectRow; index: number })
       className="group glass-strong relative overflow-hidden rounded-[2rem] transition-all duration-700 hover:-translate-y-1"
       data-cursor="hover"
     >
-
       <div
         className={`grid gap-0 ${featured ? "md:grid-cols-[1.2fr_1fr]" : "md:grid-cols-[1fr_1.2fr]"} ${index % 2 === 1 ? "md:[direction:rtl]" : ""}`}
       >
@@ -126,7 +125,7 @@ function ProjectCard({ project, index }: { project: ProjectRow; index: number })
             {/* Live Demo and GitHub Repo Buttons */}
             {(project.live_url || project.github_url) && (
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                 {project.live_url && (
+                {project.live_url && (
                   <a
                     href={ensureAbsoluteUrl(project.live_url)}
                     target="_blank"
