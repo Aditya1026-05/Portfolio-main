@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { ArrowUpRight, Github } from "lucide-react";
 import { useProjects, type ProjectRow } from "@/hooks/use-portfolio";
 import { ensureAbsoluteUrl } from "@/lib/utils";
@@ -104,9 +105,7 @@ function ProjectCard({ project, index }: { project: ProjectRow; index: number })
               <p className="mt-3 text-base text-[oklch(0.85_0.05_240)]">{project.tagline}</p>
             )}
             {project.description && (
-              <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                {project.description}
-              </p>
+              <DescriptionWithToggle description={project.description} />
             )}
           </div>
 
@@ -151,5 +150,84 @@ function ProjectCard({ project, index }: { project: ProjectRow; index: number })
         </div>
       </div>
     </motion.article>
+  );
+}
+
+
+
+function isBulletDescription(text: string) {
+  return text.trimStart().startsWith("•");
+}
+
+function parseBullets(text: string): string[] {
+  return text
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith("•"))
+    .map((line) => line.replace(/^•\s*/, ""));
+}
+
+function DescriptionWithToggle({ description }: { description: string }) {
+  const [expanded, setExpanded] = useState(false);
+
+  if (isBulletDescription(description)) {
+    const bullets = parseBullets(description);
+    const HALF_BULLET_LIMIT = 60; // chars to show for the "half" bullet
+    const isLong = bullets.length > 1;
+
+    // Build visible items: 1 full + 1 clipped (the "0.5")
+    let visibleBullets: { text: string; clipped: boolean }[];
+    if (!isLong || expanded) {
+      visibleBullets = bullets.map((b) => ({ text: b, clipped: false }));
+    } else {
+      const half = bullets[1] ?? "";
+      visibleBullets = [
+        { text: bullets[0], clipped: false },
+        {
+          text: half.length > HALF_BULLET_LIMIT ? half.slice(0, HALF_BULLET_LIMIT).trimEnd() + "…" : half,
+          clipped: half.length > HALF_BULLET_LIMIT,
+        },
+      ];
+    }
+
+    return (
+      <div className="mt-5">
+        <ul className="space-y-2 text-base leading-relaxed text-muted-foreground">
+          {visibleBullets.map((item, i) => (
+            <li key={i} className="flex gap-2">
+              <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-white/40" />
+              <span className={item.clipped ? "opacity-60" : ""}>{item.text}</span>
+            </li>
+          ))}
+        </ul>
+        {isLong && (
+          <button
+            onClick={() => setExpanded((prev) => !prev)}
+            className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-white/60 transition-colors hover:text-white focus:outline-none"
+            style={{ textDecoration: "underline", textDecorationColor: "rgba(255,255,255,0.25)" }}
+          >
+            {expanded ? "Show less" : `Show ${bullets.length - 1} more…`}
+          </button>
+        )}
+      </div>
+    );
+
+  }
+
+  // Plain-text description fallback
+  const isLong = description.length > 220;
+  return (
+    <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+      {isLong && !expanded ? description.slice(0, 220).trimEnd() + "…" : description}
+      {isLong && (
+        <button
+          onClick={() => setExpanded((prev) => !prev)}
+          className="ml-2 inline-flex items-center gap-0.5 font-medium text-white/70 underline-offset-2 transition-colors hover:text-white focus:outline-none"
+          style={{ textDecoration: "underline", textDecorationColor: "rgba(255,255,255,0.3)" }}
+        >
+          {expanded ? "Show less" : "Show more"}
+        </button>
+      )}
+    </p>
   );
 }
