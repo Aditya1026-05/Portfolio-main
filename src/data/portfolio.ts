@@ -11,7 +11,7 @@ export const heroContent = {
   "open_for_internships": true,
   "open_for_full_time": true,
   "leetcode": "Leetcode.com/Aditya1026_",
-  "resume_url": "https://drive.google.com/file/d/1Tt_xY_AMC000sBi65VWnTBzG5OdZUQv8/view?usp=sharing"
+  "resume_url": "https://drive.google.com/file/d/1dN1cIkVu2h1xbuyNfYvQrmz4uAiWWPc0/view?usp=sharing"
 };
 
 export const aboutContent = {
@@ -24,6 +24,32 @@ export const aboutContent = {
 };
 
 export const projectsData = [
+  {
+    "id": "a9333097-a3dd-448b-a6dc-e15a5287ca36",
+    "title": "NextRound – AI-Powered Mock Interview Platform",
+    "tagline": "Resume-aware AI interview platform with adaptive mock interviews",
+    "description": "• Architected and developed an MVP of an AI-powered mock interview platform supporting Backend, Frontend, Full Stack, AI/ML, Behavioral, System Design, and Coding interviews.\n\n• Built a resume-aware interview engine that generates adaptive interview blueprints, conducts stateful multi-turn conversations, and asks context-aware follow-up questions based on candidate responses.\n\n• Designed a provider-agnostic LLM orchestration layer with configurable workload profiles, structured prompt management, automatic retry/fallback across Gemini, Groq, and Mistral, and centralized observability.\n\n• Integrated Judge0 to support interactive coding interviews with secure code execution, hidden test cases, and AI-driven discussions on solution approach, time and space complexity, edge cases, and optimizations.\n\n• Currently expanding the platform with Redis-powered conversation memory, WebSockets for real-time communication, voice interviews (STT/TTS), automated interview evaluation, and personalized learning roadmap generation.",
+    "tech": [
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "SQLAlchemy",
+      "Alembic",
+      "LiteLLM",
+      "Judge0",
+      "Gemini API",
+      "Groq API",
+      "Mistral API",
+      "JWT Authentication"
+    ],
+    "year": "2026",
+    "sort_order": 10,
+    "featured": true,
+    "live_url": "",
+    "github_url": "https://github.com/Aditya1026-05/NextRound---AI-mock-interview-platform",
+    "is_ongoing": true
+  },
   {
     "id": "6e613f08-7b3e-4f51-81b8-46fedd4a3710",
     "title": "AI-Powered Poultry Farm Management",
@@ -39,7 +65,7 @@ export const projectsData = [
       "Tool Calling"
     ],
     "year": "2026",
-    "sort_order": 10,
+    "sort_order": 20,
     "featured": true,
     "live_url": "star-poultry-frontend.onrender.com",
     "github_url": "https://github.com/Aditya1026-05/poultry",
@@ -57,7 +83,7 @@ export const projectsData = [
       "Multi-modal AI"
     ],
     "year": "2024",
-    "sort_order": 20,
+    "sort_order": 30,
     "featured": true,
     "live_url": "",
     "github_url": "",
@@ -75,7 +101,7 @@ export const projectsData = [
       "Render"
     ],
     "year": "2025",
-    "sort_order": 30,
+    "sort_order": 40,
     "featured": false,
     "live_url": "hisaabkitaabonline.online/",
     "github_url": "https://github.com/Aditya1026-05/hisaabkitaabonline-expense-tracker-",
@@ -94,7 +120,7 @@ export const projectsData = [
       "SMOTEENN"
     ],
     "year": "2025",
-    "sort_order": 40,
+    "sort_order": 50,
     "featured": false,
     "live_url": "",
     "github_url": "https://github.com",
@@ -110,16 +136,19 @@ export const skillGroupsData = [
       "Machine Learning",
       "Deep Learning",
       "TensorFlow",
-      "PyTorch",
+      "Keras",
       "Scikit-learn",
-      "numpy",
-      "Opencv",
-      "Tensorflow",
-      "LLMs",
+      "OpenCV",
+      "NumPy",
+      "Matplotlib",
+      "RAG",
+      "LiteLLM",
+      "Prompt Engineering",
+      "Tool Calling",
       "Gemini API",
       "Groq API"
     ],
-    "sort_order": 5
+    "sort_order": 10
   },
   {
     "id": "f40cf988-e6a0-4808-8aa1-1234284b3f68",
@@ -130,16 +159,6 @@ export const skillGroupsData = [
       "JavaScript",
       "TypeScript",
       "SQL"
-    ],
-    "sort_order": 10
-  },
-  {
-    "id": "1ec4180c-9841-4e68-b982-1625af4e80a4",
-    "title": "Frontend",
-    "items": [
-      "React",
-      "TypeScript",
-      "Tailwind CSS"
     ],
     "sort_order": 20
   },
@@ -160,15 +179,41 @@ export const skillGroupsData = [
     "sort_order": 30
   },
   {
+    "id": "1ec4180c-9841-4e68-b982-1625af4e80a4",
+    "title": "Backend",
+    "items": [
+      "FastAPI",
+      "Flask",
+      "Django",
+      "Node.js",
+      "REST APIs",
+      "SQLAlchemy",
+      "Alembic",
+      "JWT Authentication",
+      "PostgreSQL",
+      "MongoDB",
+      "MySQL",
+      "SQLite",
+      "pgvector",
+      "AsyncIO",
+      "SMTP",
+      "Judge0"
+    ],
+    "sort_order": 40
+  },
+  {
     "id": "06bfe7e8-962a-48c8-8b88-b99f97bc23ce",
     "title": "Tools",
     "items": [
       "Git",
       "GitHub",
-      "Vs Code",
+      "VS Code",
       "Render",
       "Vercel",
-      "Github Actions"
+      "GitHub Actions",
+      "Postman",
+      "Google Colab",
+      "Jupyter Notebook"
     ],
     "sort_order": 50
   }
@@ -182,8 +227,9 @@ export const timelineItemsData = [
     "org": "Thapar Institute of Engineering and Technology",
     "description": "",
     "sort_order": 20,
-    "cgpa": "7.44",
-    "sgpa": "8.76"
+    "cgpa": "7.5",
+    "sgpa": "8.76",
+    "certificate_url": ""
   },
   {
     "id": "01ab9526-8972-4888-99be-ed7533f86b9a",
