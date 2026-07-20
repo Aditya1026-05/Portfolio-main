@@ -130,55 +130,6 @@ export const projectsData = [
 
 export const skillGroupsData = [
   {
-    "id": "7efeaded-0de1-4233-8a13-0746883aab63",
-    "title": "AI / ML",
-    "items": [
-      "Machine Learning",
-      "Deep Learning",
-      "TensorFlow",
-      "Keras",
-      "Scikit-learn",
-      "OpenCV",
-      "NumPy",
-      "Matplotlib",
-      "RAG",
-      "LiteLLM",
-      "Prompt Engineering",
-      "Tool Calling",
-      "Gemini API",
-      "Groq API"
-    ],
-    "sort_order": 10
-  },
-  {
-    "id": "f40cf988-e6a0-4808-8aa1-1234284b3f68",
-    "title": "Languages",
-    "items": [
-      "C++",
-      "Python",
-      "JavaScript",
-      "TypeScript",
-      "SQL"
-    ],
-    "sort_order": 20
-  },
-  {
-    "id": "7dfccc24-de83-4f86-a820-581ed7472ea5",
-    "title": "Backend",
-    "items": [
-      "Node.js",
-      "FastAPI",
-      "MongoDB",
-      "MySQL",
-      "SQLite",
-      "REST API",
-      "JWT",
-      "SMTP",
-      "pgvector"
-    ],
-    "sort_order": 30
-  },
-  {
     "id": "1ec4180c-9841-4e68-b982-1625af4e80a4",
     "title": "Backend",
     "items": [
@@ -199,7 +150,40 @@ export const skillGroupsData = [
       "SMTP",
       "Judge0"
     ],
-    "sort_order": 40
+    "sort_order": 10
+  },
+  {
+    "id": "7efeaded-0de1-4233-8a13-0746883aab63",
+    "title": "AI / ML",
+    "items": [
+      "Machine Learning",
+      "Deep Learning",
+      "TensorFlow",
+      "Keras",
+      "Scikit-learn",
+      "OpenCV",
+      "NumPy",
+      "Matplotlib",
+      "RAG",
+      "LiteLLM",
+      "Prompt Engineering",
+      "Tool Calling",
+      "Gemini API",
+      "Groq API"
+    ],
+    "sort_order": 20
+  },
+  {
+    "id": "7dfccc24-de83-4f86-a820-581ed7472ea5",
+    "title": "Languages",
+    "items": [
+      "Python",
+      "C++",
+      "SQL",
+      "JavaScript",
+      "TypeScript"
+    ],
+    "sort_order": 30
   },
   {
     "id": "06bfe7e8-962a-48c8-8b88-b99f97bc23ce",
@@ -215,7 +199,7 @@ export const skillGroupsData = [
       "Google Colab",
       "Jupyter Notebook"
     ],
-    "sort_order": 50
+    "sort_order": 40
   }
 ];
 
