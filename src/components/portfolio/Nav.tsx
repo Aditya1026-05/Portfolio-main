@@ -40,9 +40,18 @@ export function Nav({ onContact }: NavProps = {}) {
           href="#top"
           className="flex items-center gap-2 font-display text-sm font-bold tracking-tight"
         >
-          <span className="hidden sm:grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-[oklch(0.98_0_0)] to-[oklch(0.75_0_0)] text-primary-foreground">
-            AT
-          </span>
+          <div className="relative hidden sm:grid h-8 w-8 place-items-center overflow-hidden rounded-full border border-white/10 bg-gradient-to-br from-[oklch(0.98_0_0)] to-[oklch(0.75_0_0)] text-primary-foreground text-xs font-bold">
+            <span className="absolute">AT</span>
+            <img
+              src="/aditya.jpg"
+              alt="Aditya Tayal"
+              className="absolute inset-0 h-full w-full object-cover scale-[1.10]"
+              style={{ objectPosition: "center 15%" }}
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+            />
+          </div>
           <span className="block sm:hidden text-white font-semibold text-[15px] tracking-wide">
             Aditya
           </span>

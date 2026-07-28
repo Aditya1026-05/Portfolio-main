@@ -27,7 +27,7 @@ export function Hero({ onContact }: { onContact?: () => void }) {
     <section
       id="top"
       ref={sceneRef}
-      className="relative flex min-h-screen items-center overflow-hidden pt-32 pb-24"
+      className="relative flex min-h-screen items-center overflow-hidden pt-24 pb-12"
     >
       <div className="absolute inset-0 grid-bg opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
       <div
@@ -68,7 +68,7 @@ export function Hero({ onContact }: { onContact?: () => void }) {
           </motion.div>
         )}
 
-        <h1 className="font-display text-[clamp(2.75rem,10vw,9rem)] font-bold leading-[0.9] tracking-tighter">
+        <h1 className="font-display text-[clamp(2.5rem,8vw,6.5rem)] font-bold leading-[0.9] tracking-tighter">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -90,9 +90,9 @@ export function Hero({ onContact }: { onContact?: () => void }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
-          className="mt-8 grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center"
+          className="mt-6 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center"
         >
-          <div className="space-y-8">
+          <div className="space-y-8 order-2 md:order-1">
             <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
               {hero.tagline.includes("Aditya Tayal") ? (
                 <>
@@ -127,57 +127,83 @@ export function Hero({ onContact }: { onContact?: () => void }) {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 md:justify-end">
-            <a
-              href={ensureAbsoluteUrl(hero.github)}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="group flex h-10 w-10 hover:w-28 items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
+          <div className="flex flex-col items-center md:items-end gap-4 order-1 md:order-2">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
+              className="relative aspect-square w-full max-w-[200px] sm:max-w-[240px] overflow-hidden rounded-full border border-white/10 glass-strong shadow-xl p-2"
             >
-              <Github className="h-4 w-4 shrink-0" />
-              <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-sm font-semibold text-white whitespace-nowrap">
-                GitHub
-              </span>
-            </a>
-            <a
-              href={ensureAbsoluteUrl(hero.linkedin)}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-              className="group flex h-10 w-10 hover:w-32 items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
-            >
-              <Linkedin className="h-4 w-4 shrink-0" />
-              <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-sm font-semibold text-white whitespace-nowrap">
-                LinkedIn
-              </span>
-            </a>
-            <a
-              href={`mailto:${hero.email}`}
-              aria-label="Email"
-              className="group flex h-10 w-10 hover:w-[105px] items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
-            >
-              <Mail className="h-4 w-4 shrink-0" />
-              <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-sm font-semibold text-white whitespace-nowrap">
-                Email
-              </span>
-            </a>
-            {hero.leetcode && (
+              {/* Blur gradient background to make the photo pop */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-[oklch(0.85_0.05_240/0.05)]" />
+              <div className="absolute inset-0 grid-bg opacity-20" />
+              <div className="relative h-full w-full overflow-hidden rounded-full">
+                <motion.img
+                  src="/aditya.jpg"
+                  alt="Aditya Tayal Portrait"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "center 15%" }}
+                  animate={{ scale: 1.10 }}
+                  whileHover={{ scale: 1.18 }}
+                  transition={{ duration: 0.4 }}
+                />
+              </div>
+              {/* Soft outer glow */}
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-[oklch(0.85_0.05_240/0.12)] to-transparent blur-md -z-10 pointer-events-none" />
+            </motion.div>
+
+            <div className="flex flex-wrap items-center gap-3 md:justify-end">
               <a
-                href={ensureAbsoluteUrl(hero.leetcode)}
+                href={ensureAbsoluteUrl(hero.github)}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="LeetCode"
-                className="group flex h-10 w-10 hover:w-[125px] items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
+                aria-label="GitHub"
+                className="group flex h-10 w-10 hover:w-28 items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 shrink-0">
-                  <path d="M13.483 0a1.374 1.374 0 0 0-.961.414l-9.777 9.778a3.73 3.73 0 0 0 0 5.284l1.405 1.406a1.48 1.48 0 0 0 2.094-.006l9.024-9.025a1.48 1.48 0 0 1 2.093 2.093l-5.7 5.7a1.48 1.48 0 0 0 0 2.093l.707.707a1.48 1.48 0 0 0 2.093 0l5.7-5.7a4.43 4.43 0 0 0 0-6.28L14.444.414A1.365 1.365 0 0 0 13.483 0zm-5.787 5.7a1.48 1.48 0 0 0 0 2.093l-1.9 1.9a1.48 1.48 0 0 1-2.093-2.093l1.9-1.9a1.48 1.48 0 0 0 0-2.093l-.707-.707a1.48 1.48 0 0 0-2.093 0l-1.9 1.9a4.43 4.43 0 0 0 0 6.28l5.7 5.7a1.48 1.48 0 0 0 2.093 0l.707-.707a1.48 1.48 0 0 0 0-2.093l-5.7-5.7a1.48 1.48 0 0 1 0-2.093l1.9-1.9a1.48 1.48 0 0 0 0-2.093l-.707-.707a1.48 1.48 0 0 0-2.093 0z" />
-                </svg>
+                <Github className="h-4 w-4 shrink-0" />
                 <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-sm font-semibold text-white whitespace-nowrap">
-                  LeetCode
+                  GitHub
                 </span>
               </a>
-            )}
+              <a
+                href={ensureAbsoluteUrl(hero.linkedin)}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                className="group flex h-10 w-10 hover:w-32 items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
+              >
+                <Linkedin className="h-4 w-4 shrink-0" />
+                <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-sm font-semibold text-white whitespace-nowrap">
+                  LinkedIn
+                </span>
+              </a>
+              <a
+                href={`mailto:${hero.email}`}
+                aria-label="Email"
+                className="group flex h-10 w-10 hover:w-[105px] items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
+              >
+                <Mail className="h-4 w-4 shrink-0" />
+                <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-sm font-semibold text-white whitespace-nowrap">
+                  Email
+                </span>
+              </a>
+              {hero.leetcode && (
+                <a
+                  href={ensureAbsoluteUrl(hero.leetcode)}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LeetCode"
+                  className="group flex h-10 w-10 hover:w-[125px] items-center justify-start rounded-full glass hover:text-[oklch(0.85_0.05_240)] transition-all duration-500 ease-[0.2,0.8,0.2,1] overflow-hidden pl-3.5"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 shrink-0">
+                    <path d="M13.483 0a1.374 1.374 0 0 0-.961.414l-9.777 9.778a3.73 3.73 0 0 0 0 5.284l1.405 1.406a1.48 1.48 0 0 0 2.094-.006l9.024-9.025a1.48 1.48 0 0 1 2.093 2.093l-5.7 5.7a1.48 1.48 0 0 0 0 2.093l.707.707a1.48 1.48 0 0 0 2.093 0l5.7-5.7a4.43 4.43 0 0 0 0-6.28L14.444.414A1.365 1.365 0 0 0 13.483 0zm-5.787 5.7a1.48 1.48 0 0 0 0 2.093l-1.9 1.9a1.48 1.48 0 0 1-2.093-2.093l1.9-1.9a1.48 1.48 0 0 0 0-2.093l-.707-.707a1.48 1.48 0 0 0-2.093 0l-1.9 1.9a4.43 4.43 0 0 0 0 6.28l5.7 5.7a1.48 1.48 0 0 0 2.093 0l.707-.707a1.48 1.48 0 0 0 0-2.093l-5.7-5.7a1.48 1.48 0 0 1 0-2.093l1.9-1.9a1.48 1.48 0 0 0 0-2.093l-.707-.707a1.48 1.48 0 0 0-2.093 0z" />
+                  </svg>
+                  <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 ml-2 font-display text-sm font-semibold text-white whitespace-nowrap">
+                    LeetCode
+                  </span>
+                </a>
+              )}
+            </div>
           </div>
         </motion.div>
 
