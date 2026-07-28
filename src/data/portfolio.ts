@@ -85,7 +85,7 @@ export const projectsData = [
       "Medical Imaging",
       "Multi-modal AI"
     ],
-    "year": "2024",
+    "year": "2026",
     "sort_order": 30,
     "featured": true,
     "live_url": "",
