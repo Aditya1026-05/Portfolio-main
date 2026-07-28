@@ -33,7 +33,7 @@ import {
   skillGroupsData as initialSkills,
   timelineItemsData as initialTimeline,
 } from "@/data/portfolio";
-import { savePortfolioData } from "@/lib/editor.functions";
+import { savePortfolioData, uploadPhoto } from "@/lib/editor.functions";
 
 export const Route = createFileRoute("/admin")({
   component: AdminPage,
@@ -44,6 +44,7 @@ export const Route = createFileRoute("/admin")({
 
 function AdminPage() {
   const savePortfolio = useServerFn(savePortfolioData);
+  const uploadPhotoFn = useServerFn(uploadPhoto);
 
   // States initialized from local static files
   const [hero, setHero] = useState(initialHero);
@@ -656,6 +657,114 @@ function AdminPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Profile Photo Customizer */}
+              <div className="glass-strong rounded-3xl p-6 space-y-4 md:col-span-2">
+                <h3 className="font-display text-lg font-bold text-white mb-2">Profile Picture Settings</h3>
+                <div className="grid gap-6 sm:grid-cols-[160px_1fr] items-center">
+                  {/* Photo Preview */}
+                  <div className="flex flex-col items-center gap-2">
+                    <Label className="text-muted-foreground text-xs uppercase tracking-wider">Circular Preview</Label>
+                    <div className="relative h-32 w-32 rounded-full overflow-hidden border border-white/10 glass bg-white/5 flex items-center justify-center p-1.5">
+                      <div className="relative h-full w-full overflow-hidden rounded-full">
+                        <img
+                          src={hero.photo_url || "/aditya.jpg"}
+                          alt="Preview"
+                          className="h-full w-full object-cover"
+                          style={{
+                            objectPosition: `center ${hero.photo_position_y ?? 15}%`,
+                            transform: `scale(${hero.photo_scale ?? 1.0})`,
+                          }}
+                          onError={(e) => {
+                            e.currentTarget.style.opacity = "0";
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Upload & Positioning Sliders */}
+                  <div className="space-y-4">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-1.5">
+                        <Label htmlFor="upload-photo">Upload Local Image</Label>
+                        <Input
+                          id="upload-photo"
+                          type="file"
+                          accept="image/*"
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (!file) return;
+                            
+                            const reader = new FileReader();
+                            reader.onload = async () => {
+                              const base64 = reader.result as string;
+                              try {
+                                toast.loading("Uploading photo...", { id: "upload-photo" });
+                                const res = await uploadPhotoFn({ base64, fileName: file.name });
+                                if (res.url) {
+                                  setHero({ ...hero, photo_url: res.url });
+                                  toast.success("Photo uploaded successfully!", { id: "upload-photo" });
+                                }
+                              } catch (err) {
+                                toast.error("Failed to upload photo", { id: "upload-photo" });
+                              }
+                            };
+                            reader.readAsDataURL(file);
+                          }}
+                          className="bg-white/5 border-white/10 file:bg-white/10 file:text-white file:border-0 file:rounded-md file:px-2.5 file:py-1 cursor-pointer file:cursor-pointer"
+                        />
+                      </div>
+                      
+                      <div className="space-y-1.5">
+                        <Label htmlFor="photo-url">Photo URL Path</Label>
+                        <Input
+                          id="photo-url"
+                          value={hero.photo_url || ""}
+                          onChange={(e) => setHero({ ...hero, photo_url: e.target.value })}
+                          className="bg-white/5 border-white/10"
+                          placeholder="/aditya.jpg"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-1.5">
+                        <div className="flex items-center justify-between text-sm">
+                          <Label htmlFor="photo-scale">Photo Zoom (Scale): {(hero.photo_scale ?? 1.0).toFixed(2)}x</Label>
+                        </div>
+                        <input
+                          id="photo-scale"
+                          type="range"
+                          min="0.5"
+                          max="2.0"
+                          step="0.01"
+                          value={hero.photo_scale ?? 1.0}
+                          onChange={(e) => setHero({ ...hero, photo_scale: parseFloat(e.target.value) })}
+                          className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-white"
+                        />
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <div className="flex items-center justify-between text-sm">
+                          <Label htmlFor="photo-pos-y">Vertical Offset (Y): {hero.photo_position_y ?? 15}%</Label>
+                        </div>
+                        <input
+                          id="photo-pos-y"
+                          type="range"
+                          min="0"
+                          max="100"
+                          step="1"
+                          value={hero.photo_position_y ?? 15}
+                          onChange={(e) => setHero({ ...hero, photo_position_y: parseInt(e.target.value) })}
+                          className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-white"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </TabsContent>
 

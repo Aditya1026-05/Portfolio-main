@@ -51,6 +51,9 @@ export type HeroContent = {
   resume_url?: string;
   open_for_internships?: boolean;
   open_for_full_time?: boolean;
+  photo_url?: string;
+  photo_scale?: number;
+  photo_position_y?: number;
 };
 
 export type AboutContent = {
@@ -71,6 +74,9 @@ export const heroFallback: HeroContent = {
   email: "adityatayal2610@gmail.com",
   github: "https://github.com",
   linkedin: "https://linkedin.com",
+  photo_url: "/aditya.jpg",
+  photo_scale: 1.0,
+  photo_position_y: 15,
 };
 
 export const aboutFallback: AboutContent = {

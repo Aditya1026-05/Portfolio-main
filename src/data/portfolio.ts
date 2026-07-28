@@ -11,7 +11,10 @@ export const heroContent = {
   "open_for_internships": true,
   "open_for_full_time": true,
   "leetcode": "Leetcode.com/Aditya1026_",
-  "resume_url": "https://drive.google.com/file/d/1dN1cIkVu2h1xbuyNfYvQrmz4uAiWWPc0/view?usp=sharing"
+  "resume_url": "https://drive.google.com/file/d/1FUnJGJuD39k4EMcHm75pwPVegB8Du3fU/view?usp=sharing",
+  "photo_url": "/aditya.jpg",
+  "photo_scale": 1.46,
+  "photo_position_y": 0
 };
 
 export const aboutContent = {

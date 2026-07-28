@@ -19,6 +19,9 @@ export function Nav({ onContact }: NavProps = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const hero = useSiteContent<HeroContent>("hero", heroFallback);
+  const photoUrl = hero.photo_url || "/aditya.jpg";
+  const photoScale = hero.photo_scale ?? 1.0;
+  const photoPositionY = hero.photo_position_y ?? 15;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -43,10 +46,13 @@ export function Nav({ onContact }: NavProps = {}) {
           <div className="relative hidden sm:grid h-8 w-8 place-items-center overflow-hidden rounded-full border border-white/10 bg-gradient-to-br from-[oklch(0.98_0_0)] to-[oklch(0.75_0_0)] text-primary-foreground text-xs font-bold">
             <span className="absolute">AT</span>
             <img
-              src="/aditya.jpg"
+              src={photoUrl}
               alt="Aditya Tayal"
-              className="absolute inset-0 h-full w-full object-cover scale-[1.10]"
-              style={{ objectPosition: "center 15%" }}
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{
+                objectPosition: `center ${photoPositionY}%`,
+                transform: `scale(${photoScale})`
+              }}
               onError={(e) => {
                 e.currentTarget.style.display = "none";
               }}

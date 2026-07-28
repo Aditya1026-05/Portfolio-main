@@ -8,6 +8,9 @@ import { ensureAbsoluteUrl } from "@/lib/utils";
 export function Hero({ onContact }: { onContact?: () => void }) {
   const sceneRef = useRef<HTMLDivElement>(null);
   const hero = useSiteContent<HeroContent>("hero", heroFallback);
+  const photoUrl = hero.photo_url || "/aditya.jpg";
+  const photoScale = hero.photo_scale ?? 1.0;
+  const photoPositionY = hero.photo_position_y ?? 15;
 
   useEffect(() => {
     const el = sceneRef.current;
@@ -139,12 +142,12 @@ export function Hero({ onContact }: { onContact?: () => void }) {
               <div className="absolute inset-0 grid-bg opacity-20" />
               <div className="relative h-full w-full overflow-hidden rounded-full">
                 <motion.img
-                  src="/aditya.jpg"
+                  src={photoUrl}
                   alt="Aditya Tayal Portrait"
                   className="h-full w-full object-cover"
-                  style={{ objectPosition: "center 15%" }}
-                  animate={{ scale: 1.10 }}
-                  whileHover={{ scale: 1.18 }}
+                  style={{ objectPosition: `center ${photoPositionY}%` }}
+                  animate={{ scale: photoScale }}
+                  whileHover={{ scale: photoScale * 1.08 }}
                   transition={{ duration: 0.4 }}
                 />
               </div>

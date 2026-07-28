@@ -35,3 +35,30 @@ export const timelineItemsData = ${JSON.stringify(data.timelineItemsData, null, 
       throw new Error("Failed to write portfolio data to disk");
     }
   });
+
+export const uploadPhoto = createServerFn({ method: "POST" })
+  .inputValidator(
+    (d: {
+      base64: string;
+      fileName: string;
+    }) => d,
+  )
+  .handler(async ({ data }) => {
+    try {
+      // Decode base64 string to buffer
+      const base64Data = data.base64.replace(/^data:image\/\w+;base64,/, "");
+      const buffer = Buffer.from(base64Data, "base64");
+      
+      // Determine file path in the public directory
+      const cleanFileName = data.fileName.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+      const filePath = path.resolve(process.cwd(), "public", cleanFileName);
+      
+      // Save file
+      await fs.writeFile(filePath, buffer);
+      
+      return { ok: true, url: `/${cleanFileName}` };
+    } catch (error) {
+      console.error("[Editor Server Function] Upload failed:", error);
+      throw new Error("Failed to write uploaded image to disk");
+    }
+  });
