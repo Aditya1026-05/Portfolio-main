@@ -55,7 +55,8 @@ function ProjectCard({ project, index }: { project: ProjectRow; index: number })
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.8, delay: index * 0.05 }}
-      className="group glass-strong bg-black/85 relative overflow-hidden rounded-[2rem] transition-all duration-700 hover:-translate-y-1"
+      className="group glass-strong relative overflow-hidden rounded-[2rem] transition-all duration-700 hover:-translate-y-1"
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.85)" }}
       data-cursor="hover"
     >
       <div
