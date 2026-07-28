@@ -62,7 +62,7 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="relative"
+            className="hidden md:block relative"
           >
             <div className="glass-strong relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-3xl p-8">
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5" />
