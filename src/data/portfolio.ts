@@ -11,7 +11,7 @@ export const heroContent = {
   "open_for_internships": true,
   "open_for_full_time": true,
   "leetcode": "Leetcode.com/Aditya1026_",
-  "resume_url": "https://drive.google.com/file/d/1FUnJGJuD39k4EMcHm75pwPVegB8Du3fU/view?usp=sharing",
+  "resume_url": "https://drive.google.com/file/d/1B1fv9LDsBPjyBwS-Owo1d2faM1044Rhl/view?usp=sharing",
   "photo_url": "/aditya.jpg",
   "photo_scale": 1.46,
   "photo_position_y": 0
@@ -238,6 +238,6 @@ export const timelineItemsData = [
     "sort_order": 40,
     "cgpa": "",
     "sgpa": "",
-    "certificate_url": ""
+    "certificate_url": "https://drive.google.com/file/d/14xLf7tNM_k66RpRmt9DwBY53zgAcsDmg/view?usp=sharing"
   }
 ];
