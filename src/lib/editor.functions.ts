@@ -8,6 +8,7 @@ export const savePortfolioData = createServerFn({ method: "POST" })
       projectsData: Record<string, unknown>[];
       skillGroupsData: Record<string, unknown>[];
       timelineItemsData: Record<string, unknown>[];
+      achievementsData?: Record<string, unknown>[];
     }) => d,
   )
   .handler(async ({ data }) => {
@@ -26,6 +27,8 @@ export const projectsData = ${JSON.stringify(data.projectsData, null, 2)};
 export const skillGroupsData = ${JSON.stringify(data.skillGroupsData, null, 2)};
 
 export const timelineItemsData = ${JSON.stringify(data.timelineItemsData, null, 2)};
+
+export const achievementsData = ${JSON.stringify(data.achievementsData ?? [], null, 2)};
 `;
 
       const filePath = path.resolve(process.cwd(), "src/data/portfolio.ts");

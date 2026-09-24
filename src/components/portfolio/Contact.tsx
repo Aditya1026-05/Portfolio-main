@@ -1,11 +1,27 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, ArrowUp, Phone } from "lucide-react";
 import { Magnetic } from "./Magnetic";
 import { heroFallback, useSiteContent, type HeroContent } from "@/hooks/use-portfolio";
 import { ensureAbsoluteUrl } from "@/lib/utils";
 
 export function Contact({ onContact }: { onContact?: () => void }) {
   const hero = useSiteContent<HeroContent>("hero", heroFallback);
+
+  const contactItems = [
+    { label: "Email", value: hero.email, href: `mailto:${hero.email}`, icon: Mail },
+    ...(hero.phone
+      ? [
+          {
+            label: "Phone",
+            value: hero.phone,
+            href: `tel:${hero.phone.replace(/[\s-]/g, "")}`,
+            icon: Phone,
+          },
+        ]
+      : []),
+    { label: "GitHub", value: "GitHub", href: hero.github, icon: Github },
+    { label: "LinkedIn", value: "LinkedIn", href: hero.linkedin, icon: Linkedin },
+  ];
 
   return (
     <section id="contact" className="relative overflow-hidden py-32">
@@ -53,16 +69,12 @@ export function Contact({ onContact }: { onContact?: () => void }) {
             </Magnetic>
           </div>
 
-          <div className="mx-auto mt-16 grid max-w-2xl gap-4 sm:grid-cols-3">
-            {[
-              { label: "Email", value: hero.email, href: `mailto:${hero.email}`, icon: Mail },
-              { label: "GitHub", value: "GitHub", href: hero.github, icon: Github },
-              { label: "LinkedIn", value: "LinkedIn", href: hero.linkedin, icon: Linkedin },
-            ].map((c) => (
+          <div className="mx-auto mt-16 grid max-w-4xl gap-4 grid-cols-2 lg:grid-cols-4">
+            {contactItems.map((c) => (
               <a
                 key={c.label}
                 href={c.href}
-                target={c.href.startsWith("mailto:") ? undefined : "_blank"}
+                target={c.href.startsWith("mailto:") || c.href.startsWith("tel:") ? undefined : "_blank"}
                 rel="noreferrer"
                 className="glass group flex flex-col items-start gap-3 rounded-2xl p-5 text-left transition-all hover:-translate-y-1 hover:bg-white/[0.06]"
               >

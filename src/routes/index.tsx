@@ -7,6 +7,7 @@ import { About, Marquee } from "@/components/portfolio/About";
 import { Skills } from "@/components/portfolio/Skills";
 import { Projects } from "@/components/portfolio/Projects";
 import { Experience } from "@/components/portfolio/Experience";
+import { Achievements } from "@/components/portfolio/Achievements";
 import { Contact, Footer } from "@/components/portfolio/Contact";
 import { ContactDialog } from "@/components/portfolio/ContactDialog";
 
@@ -28,6 +29,7 @@ function Index() {
         <Projects />
         <Skills />
         <Experience />
+        <Achievements />
         <Contact onContact={open} />
       </main>
       <Footer />

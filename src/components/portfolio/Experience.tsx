@@ -65,7 +65,7 @@ export function Experience() {
                         <div className="mt-1 text-sm text-[oklch(0.85_0.05_240)]">{item.org}</div>
                       )}
                       {item.description && (
-                        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                        <p className="mt-4 text-sm leading-relaxed text-muted-foreground whitespace-pre-line">
                           {item.description}
                         </p>
                       )}

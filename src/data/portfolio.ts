@@ -2,16 +2,18 @@
 
 export const heroContent = {
   "headline1": "AI Engineer",
-  "headline2": "& Software Developer",
-  "tagline": "Hi, I'm Aditya Tayal — a AI/ML enthusiast and Full-Stack Developer passionate about building intelligent applications that solve real-world problems. I enjoy combining machine learning, modern web technologies, and clean software engineering to create scalable products with meaningful impact.",
+  "headline2": "& Backend Developer",
+  "tagline": "Hi, I'm Aditya Tayal — an AI Engineer and Software Developer focused on building production-grade intelligent systems. I develop AI-powered applications, RAG pipelines, and scalable backend services using Python, FastAPI, Django, MongoDB, and AWS. Passionate about solving real-world business problems through LLMs, machine learning, and modern software engineering.",
   "available": true,
   "email": "adityatayal2610@gmail.com",
+  "phone": "+91-8847660891",
+  "location": "Patiala, Punjab",
   "github": "https://github.com/Aditya1026-05",
   "linkedin": "https://www.linkedin.com/in/aditya0898/",
+  "leetcode": "https://leetcode.com/u/Aditya1026_/",
   "open_for_internships": true,
   "open_for_full_time": true,
-  "leetcode": "Leetcode.com/Aditya1026_",
-  "resume_url": "https://drive.google.com/file/d/1B1fv9LDsBPjyBwS-Owo1d2faM1044Rhl/view?usp=sharing",
+  "resume_url": "https://drive.google.com/file/d/1WdWap1BjjPSZGiSDdBFx9r_zRtzh77S7/view?usp=sharing",
   "photo_url": "/aditya.jpg",
   "photo_scale": 1.46,
   "photo_position_y": 0
@@ -21,86 +23,89 @@ export const aboutContent = {
   "heading": "About Me",
   "initials": "ADITYA",
   "handle": "Aditya2610_",
-  "location": "Based in India · Available globally",
-  "paragraph1": "I develop AI-powered applications that bridge research and real-world usability. Whether it's training machine learning models, integrating LLMs through Retrieval-Augmented Generation (RAG), Tool Calling or deploying production-ready APIs, I enjoy building intelligent systems that create measurable value.",
-  "paragraph2": "Currently pursuing a B.Tech in Electronics & Communication Engineering at Thapar Institute of Engineering & Technology, I'm continuously expanding my expertise in artificial intelligence, software engineering, and system design. I'm passionate about learning, building impactful products, and contributing to teams that solve meaningful engineering challenges."
+  "location": "Patiala, Punjab · Available globally",
+  "paragraph1": "I build AI-powered applications and scalable backend systems with a focus on solving real-world problems. My experience includes developing production-ready APIs with FastAPI and Django, building RAG pipelines and LLM-powered workflows, and deploying applications using Docker and AWS. I enjoy turning complex ideas into practical software that delivers value to users.",
+  "paragraph2": "I am currently pursuing a B.Tech in Electronics & Communication Engineering at Thapar Institute of Engineering & Technology. Alongside academics, I actively practice data structures and algorithms, explore modern AI systems, and work on projects ranging from intelligent business automation to full-stack web applications. I am particularly interested in AI engineering, backend development, and distributed systems."
 };
 
 export const projectsData = [
   {
-    "id": "a9333097-a3dd-448b-a6dc-e15a5287ca36",
-    "title": "NextRound – AI-Powered Mock Interview Platform",
-    "tagline": "Resume-aware AI interview platform with adaptive mock interviews",
-    "description": "• Architected and developed an MVP of an AI-powered mock interview platform supporting Backend, Frontend, Full Stack, AI/ML, Behavioral, System Design, and Coding interviews.\n\n• Built a resume-aware interview engine that generates adaptive interview blueprints, conducts stateful multi-turn conversations, and asks context-aware follow-up questions based on candidate responses.\n\n• Designed a provider-agnostic LLM orchestration layer with configurable workload profiles, structured prompt management, automatic retry/fallback across Gemini, Groq, and Mistral, and centralized observability.\n\n• Integrated Judge0 to support interactive coding interviews with secure code execution, hidden test cases, and AI-driven discussions on solution approach, time and space complexity, edge cases, and optimizations.\n\n• Currently expanding the platform with Redis-powered conversation memory, WebSockets for real-time communication, voice interviews (STT/TTS), automated interview evaluation, and personalized learning roadmap generation.",
+    "id": "star-poultry-copilot",
+    "title": "Star Poultry – AI Copilot",
+    "tagline": "Poultry business management platform with Gemini AI Copilot & AWS deployment",
+    "description": "• Created and deployed a poultry business management platform using FastAPI, MongoDB, AWS, and Docker, handling 200+ customer orders weekly across order, expense, and analytics workflows.\n\n• Implemented an AI Copilot using Gemini Function Calling and a 16-tool orchestration layer, enabling business analytics, operational insights, and automated workflow execution through natural-language interactions.\n\n• Developed an AI-powered expense drafting workflow that converts natural-language inputs into structured expense records, streamlining 10–30 bookkeeping operations weekly and reducing manual administrative effort.",
     "tech": [
       "FastAPI",
-      "React",
-      "TypeScript",
-      "PostgreSQL",
-      "SQLAlchemy",
-      "Alembic",
-      "LiteLLM",
-      "Judge0",
+      "MongoDB",
       "Gemini API",
-      "Groq API",
-      "Mistral API",
-      "JWT Authentication"
+      "AWS EC2",
+      "Docker",
+      "Nginx",
+      "GitHub Actions",
+      "CI/CD",
+      "Function Calling"
     ],
     "year": "2026",
     "sort_order": 10,
+    "featured": true,
+    "live_url": "https://www.starpoultry.shop",
+    "github_url": "https://github.com/Aditya1026-05/poultry",
+    "is_ongoing": false
+  },
+  {
+    "id": "nextround-interview-platform",
+    "title": "NextRound – AI Interview Platform",
+    "tagline": "Resume-aware AI interview platform with adaptive mock interviews & Judge0 evaluation",
+    "description": "• Built a prototype AI interview platform supporting 3 interview modes, validating core workflows through 40+ end-to-end interview sessions.\n\n• Implemented session-aware conversation management and contextual memory, enabling dynamic follow-up questioning across multi-turn interview interactions.\n\n• Developed a provider-agnostic LLM orchestration layer supporting 4 LLM providers with automatic retry and fallback routing, reducing dependency on any single model provider.",
+    "tech": [
+      "FastAPI",
+      "LiteLLM",
+      "PostgreSQL",
+      "Judge0",
+      "React",
+      "TypeScript",
+      "SQLAlchemy",
+      "Alembic",
+      "Gemini API",
+      "Groq API"
+    ],
+    "year": "2026",
+    "sort_order": 20,
     "featured": true,
     "live_url": "",
     "github_url": "https://github.com/Aditya1026-05/NextRound---AI-mock-interview-platform",
     "is_ongoing": true
   },
   {
-    "id": "6e613f08-7b3e-4f51-81b8-46fedd4a3710",
-    "title": "AI-Powered Poultry Farm Management",
-    "tagline": "End-to-end SaaS for modern farms",
-    "description": "A full-stack platform with revenue analytics, admin dashboards, an AI assistant, JWT auth, SMTP notifications, and CSV export. Built for scale and deployed to production.",
+    "id": "diabetic-foot-ulcer-prediction",
+    "title": "Diabetic Foot Ulcer Prediction System",
+    "tagline": "Multimodal early-stage ulcer risk prediction combining CNN imaging & insole sensor analysis",
+    "description": "• Built a multimodal diabetic foot ulcer risk prediction system combining CNN-based image classification and Random Forest sensor analysis for early-stage ulcer detection and risk assessment.\n\n• Implemented a FastAPI backend with REST and WebSocket endpoints supporting real-time inference from 16 insole sensor channels alongside image-based prediction workflows.\n\n• Engineered a 161-feature extraction pipeline and trained a 3-model CNN ensemble, achieving 95% classification accuracy and 0.90 ROC-AUC across data collected from 55 patients.",
     "tech": [
-      "React",
       "FastAPI",
-      "MongoDB",
-      "JWT",
-      "Render",
-      "Gemini API",
-      "Tool Calling"
-    ],
-    "year": "2026",
-    "sort_order": 20,
-    "featured": true,
-    "live_url": "star-poultry-frontend.onrender.com",
-    "github_url": "https://github.com/Aditya1026-05/poultry",
-    "is_ongoing": false
-  },
-  {
-    "id": "32494482-b3bc-4187-ab8b-7ba4081fd416",
-    "title": "Diabetic Foot Ulcer Early Detection",
-    "tagline": "Multi-modal deep learning for healthcare - Capstone Project",
-    "description": "A CNN-based system for early detection of diabetic foot ulcers using medical imaging and multi-modal AI for clinical support.",
-    "tech": [
+      "TensorFlow/Keras",
+      "WebSocket",
       "CNN",
-      "Deep Learning",
-      "Medical Imaging",
-      "Multi-modal AI"
+      "Random Forest",
+      "Scikit-Learn",
+      "REST APIs"
     ],
     "year": "2026",
     "sort_order": 30,
     "featured": true,
     "live_url": "",
-    "github_url": "",
+    "github_url": "https://github.com/Aditya1026-05",
     "is_ongoing": true
   },
   {
-    "id": "3321e202-3669-4a14-a5bb-bce4c9418a57",
+    "id": "hisaab-kitaab-online",
     "title": "Hisaab Kitaab Online",
-    "tagline": "A Simple expense tracker for students ",
-    "description": "built and Deployed ",
+    "tagline": "A simple expense tracker for students",
+    "description": "Built and deployed a lightweight personal finance and expense tracking tool designed for students.",
     "tech": [
       "Flask",
       "Python",
-      "Tailwind css",
+      "Tailwind CSS",
       "Render"
     ],
     "year": "2025",
@@ -111,7 +116,7 @@ export const projectsData = [
     "is_ongoing": false
   },
   {
-    "id": "ced701dd-7a11-4619-b56b-5632b135e7c7",
+    "id": "customer-churn-prediction",
     "title": "Customer Churn Prediction",
     "tagline": "ML pipeline with Streamlit deployment",
     "description": "Predictive modeling with XGBoost and Random Forest, class balancing via SMOTEENN, wrapped in an interactive Streamlit interface.",
@@ -126,118 +131,182 @@ export const projectsData = [
     "sort_order": 50,
     "featured": false,
     "live_url": "",
-    "github_url": "https://github.com",
+    "github_url": "https://github.com/Aditya1026-05",
     "is_ongoing": false
   }
 ];
 
 export const skillGroupsData = [
   {
-    "id": "1ec4180c-9841-4e68-b982-1625af4e80a4",
-    "title": "Backend",
-    "items": [
-      "FastAPI",
-      "Flask",
-      "Django",
-      "Node.js",
-      "REST APIs",
-      "SQLAlchemy",
-      "Alembic",
-      "JWT Authentication",
-      "PostgreSQL",
-      "MongoDB",
-      "MySQL",
-      "SQLite",
-      "pgvector",
-      "AsyncIO",
-      "SMTP",
-      "Judge0"
-    ],
-    "sort_order": 10
-  },
-  {
-    "id": "7efeaded-0de1-4233-8a13-0746883aab63",
-    "title": "AI / ML",
-    "items": [
-      "Machine Learning",
-      "Deep Learning",
-      "TensorFlow",
-      "Keras",
-      "Scikit-learn",
-      "OpenCV",
-      "NumPy",
-      "Matplotlib",
-      "RAG",
-      "LiteLLM",
-      "Prompt Engineering",
-      "Tool Calling",
-      "Gemini API",
-      "Groq API"
-    ],
-    "sort_order": 20
-  },
-  {
-    "id": "7dfccc24-de83-4f86-a820-581ed7472ea5",
+    "id": "languages-skills",
     "title": "Languages",
     "items": [
       "Python",
       "C++",
-      "SQL",
-      "JavaScript",
-      "TypeScript"
+      "SQL"
+    ],
+    "sort_order": 10
+  },
+  {
+    "id": "backend-skills",
+    "title": "Backend",
+    "items": [
+      "FastAPI",
+      "Django",
+      "Flask",
+      "REST APIs",
+      "WebSocket",
+      "SQLAlchemy",
+      "Alembic",
+      "JWT Authentication"
+    ],
+    "sort_order": 20
+  },
+  {
+    "id": "databases-skills",
+    "title": "Databases",
+    "items": [
+      "PostgreSQL",
+      "MongoDB",
+      "MySQL",
+      "SQLite",
+      "pgvector"
     ],
     "sort_order": 30
   },
   {
-    "id": "06bfe7e8-962a-48c8-8b88-b99f97bc23ce",
-    "title": "Tools",
+    "id": "ai-llm-skills",
+    "title": "AI / LLM",
+    "items": [
+      "Gemini API",
+      "Groq API",
+      "LiteLLM",
+      "RAG",
+      "LangChain",
+      "Prompt Engineering",
+      "Tool/Function Calling"
+    ],
+    "sort_order": 40
+  },
+  {
+    "id": "ml-skills",
+    "title": "Machine Learning",
+    "items": [
+      "TensorFlow/Keras",
+      "Scikit-Learn",
+      "OpenCV"
+    ],
+    "sort_order": 50
+  },
+  {
+    "id": "cloud-devops-skills",
+    "title": "Cloud & DevOps",
+    "items": [
+      "AWS EC2",
+      "Docker",
+      "Nginx",
+      "GitHub Actions",
+      "CI/CD"
+    ],
+    "sort_order": 60
+  },
+  {
+    "id": "developer-tools-skills",
+    "title": "Developer Tools",
     "items": [
       "Git",
       "GitHub",
+      "Pytest",
       "VS Code",
-      "Render",
-      "Vercel",
-      "GitHub Actions",
-      "Postman",
       "Google Colab",
-      "Jupyter Notebook"
+      "Streamlit"
     ],
-    "sort_order": 40
+    "sort_order": 70
+  },
+  {
+    "id": "data-analytics-skills",
+    "title": "Data Analytics",
+    "items": [
+      "Excel",
+      "Pandas",
+      "NumPy",
+      "Tableau",
+      "Power BI"
+    ],
+    "sort_order": 80
   }
 ];
 
 export const timelineItemsData = [
   {
-    "id": "7841e36d-cd8f-4b0a-9261-782bb8bf052e",
-    "year": "2023 — Present",
-    "title": "B.Tech, Electronics & Communication",
-    "org": "Thapar Institute of Engineering and Technology",
-    "description": "",
+    "id": "exp-vamcor",
+    "year": "Jun 2026 – Jul 2026",
+    "title": "Summer Intern (Remote)",
+    "org": "Vamcor Technologies Pvt. Ltd · Panchkula, Haryana",
+    "description": "• Engineered backend features for an AI-powered platform using Django, React, PostgreSQL, and REST APIs, implementing 12+ API endpoints.\n• Designed a RAG pipeline using LangChain and Groq LLMs, indexing 30+ documents into 2,400+ semantic chunks for knowledge retrieval.\n• Integrated Groq LLM APIs and evaluated chatbot performance across 200+ test queries, improving retrieval relevance and response quality.",
+    "sort_order": 10,
+    "cgpa": "",
+    "sgpa": "",
+    "certificate_url": "https://drive.google.com/file/d/14xLf7tNM_k66RpRmt9DwBY53zgAcsDmg/view?usp=sharing"
+  },
+  {
+    "id": "edu-thapar",
+    "year": "2023 – 2027",
+    "title": "B.Tech - Electronics and Communication Engineering",
+    "org": "Thapar Institute of Engineering and Technology · Patiala, Punjab",
+    "description": "Undergraduate degree in Electronics & Communication Engineering. Relevant areas: AI & Machine Learning, Data Structures & Algorithms, Database Management Systems, and IoT Sensors.",
     "sort_order": 20,
     "cgpa": "7.5",
     "sgpa": "8.76",
     "certificate_url": ""
   },
   {
-    "id": "01ab9526-8972-4888-99be-ed7533f86b9a",
+    "id": "exp-elc-thapar",
     "year": "Jun 2025 - July 2025",
-    "title": "Summer Intern",
+    "title": "Summer Research Intern",
     "org": "Experiential Learning Centre, Thapar University",
-    "description": "Development of thin film gas sensor for detection of acetone in air",
+    "description": "Development of thin film gas sensor for detection of acetone in air.",
     "sort_order": 30,
     "cgpa": "",
     "sgpa": "",
     "certificate_url": "https://drive.google.com/file/d/1au-V6WhX1Kdi8bibScCSCks6R5Jpd47K/view?usp=sharing"
+  }
+];
+
+export const achievementsData = [
+  {
+    "id": "flipkart-grid",
+    "title": "Flipkart GRiD 8.0 — Semi-Finalist",
+    "category": "National Hackathon",
+    "description": "Reached Round 3/4 (Semi-Finals) of Flipkart GRiD 8.0, one of India's largest engineering challenges.",
+    "sort_order": 10
   },
   {
-    "id": "3f8a07cf-2161-44f5-9b4c-1db810bc64b5",
-    "year": "Jun 2026 - Present",
-    "title": "Summer Intern",
-    "org": "Vamcor Technologies Pvt. Ltd",
-    "description": "Building and Testing a fully secure Broiler Farm management system with Two ai Bots one based on RAG and one Based on data retrieval from current database(PostgreSQL) ",
-    "sort_order": 40,
-    "cgpa": "",
-    "sgpa": "",
-    "certificate_url": "https://drive.google.com/file/d/14xLf7tNM_k66RpRmt9DwBY53zgAcsDmg/view?usp=sharing"
+    "id": "dsa-problems",
+    "title": "280+ DSA Problems Solved",
+    "category": "Problem Solving",
+    "description": "Solved 280+ Data Structures and Algorithms problems across major coding platforms including LeetCode.",
+    "sort_order": 20
+  },
+  {
+    "id": "hackerrank-sql",
+    "title": "5-Star SQL Badge on HackerRank",
+    "category": "Certifications & Badges",
+    "description": "Earned 5-Star SQL badge on HackerRank, demonstrating expertise in complex relational queries and database management.",
+    "sort_order": 30
+  },
+  {
+    "id": "thapar-movie-club",
+    "title": "Coordinator — Thapar Movie Club",
+    "category": "Leadership & Management",
+    "description": "Coordinated 50+ student members and volunteers in the Thapar Movie Club, driving execution of club initiatives, projects, and major events.",
+    "sort_order": 40
+  },
+  {
+    "id": "cineyouth-lead",
+    "title": "Lead Organizer — CineYouth",
+    "category": "Event Leadership",
+    "description": "Led planning and execution of CineYouth, coordinating cross-functional teams, event logistics, schedules, and participant engagement.",
+    "sort_order": 50
   }
 ];

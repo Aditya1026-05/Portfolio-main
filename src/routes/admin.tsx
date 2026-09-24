@@ -25,6 +25,8 @@ import {
   Check,
   Lock,
   Loader2,
+  Trophy,
+  Phone,
 } from "lucide-react";
 import {
   heroContent as initialHero,
@@ -32,6 +34,7 @@ import {
   projectsData as initialProjects,
   skillGroupsData as initialSkills,
   timelineItemsData as initialTimeline,
+  achievementsData as initialAchievements,
 } from "@/data/portfolio";
 import { savePortfolioData, uploadPhoto } from "@/lib/editor.functions";
 
@@ -52,6 +55,7 @@ function AdminPage() {
   const [projects, setProjects] = useState(initialProjects);
   const [skills, setSkills] = useState(initialSkills);
   const [timeline, setTimeline] = useState(initialTimeline);
+  const [achievements, setAchievements] = useState(initialAchievements ?? []);
 
   // Auth states
   const [passcode, setPasscode] = useState("");
@@ -132,6 +136,13 @@ function AdminPage() {
     certificate_url: "",
   });
 
+  const [editingAchievementIndex, setEditingAchievementIndex] = useState<number | null>(null);
+  const [achievementForm, setAchievementForm] = useState({
+    title: "",
+    category: "",
+    description: "",
+  });
+
   const [busy, setBusy] = useState(false);
 
   // Global Save function to write to disk
@@ -145,6 +156,7 @@ function AdminPage() {
           projectsData: projects,
           skillGroupsData: skills,
           timelineItemsData: timeline,
+          achievementsData: achievements,
         },
       });
       if (res.ok) {
@@ -338,6 +350,52 @@ function AdminPage() {
     setTimeline(resorted);
   }
 
+  // --- Achievements helper actions ---
+  function handleAddOrUpdateAchievement() {
+    if (!achievementForm.title.trim()) return;
+
+    const newItem = {
+      id:
+        editingAchievementIndex !== null
+          ? achievements[editingAchievementIndex].id
+          : crypto.randomUUID(),
+      title: achievementForm.title,
+      category: achievementForm.category,
+      description: achievementForm.description,
+      sort_order:
+        editingAchievementIndex !== null
+          ? achievements[editingAchievementIndex].sort_order
+          : (achievements.length + 1) * 10,
+    };
+
+    if (editingAchievementIndex !== null) {
+      const updated = [...achievements];
+      updated[editingAchievementIndex] = newItem;
+      setAchievements(updated);
+      setEditingAchievementIndex(null);
+    } else {
+      setAchievements([...achievements, newItem]);
+    }
+
+    setAchievementForm({
+      title: "",
+      category: "",
+      description: "",
+    });
+    toast.success("Achievement entry updated.");
+  }
+
+  function moveAchievement(index: number, direction: "up" | "down") {
+    const nextIndex = direction === "up" ? index - 1 : index + 1;
+    if (nextIndex < 0 || nextIndex >= achievements.length) return;
+    const updated = [...achievements];
+    const temp = updated[index];
+    updated[index] = updated[nextIndex];
+    updated[nextIndex] = temp;
+    const resorted = updated.map((a, i) => ({ ...a, sort_order: (i + 1) * 10 }));
+    setAchievements(resorted);
+  }
+
   if (!ready) {
     return (
       <div className="min-h-screen bg-background text-foreground grid place-items-center">
@@ -475,6 +533,9 @@ function AdminPage() {
             <TabsTrigger value="timeline" className="rounded-full px-4 py-2 text-xs font-medium">
               <GraduationCap className="h-3.5 w-3.5 mr-1" /> Timeline
             </TabsTrigger>
+            <TabsTrigger value="achievements" className="rounded-full px-4 py-2 text-xs font-medium">
+              <Trophy className="h-3.5 w-3.5 mr-1" /> Achievements
+            </TabsTrigger>
           </TabsList>
 
           {/* BIO TAB */}
@@ -557,6 +618,17 @@ function AdminPage() {
                       type="email"
                       value={hero.email}
                       onChange={(e) => setHero({ ...hero, email: e.target.value })}
+                      className="bg-white/5 border-white/10"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="phone">Phone Number</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      value={hero.phone || ""}
+                      onChange={(e) => setHero({ ...hero, phone: e.target.value })}
+                      placeholder="+91-8847660891"
                       className="bg-white/5 border-white/10"
                     />
                   </div>
@@ -701,7 +773,7 @@ function AdminPage() {
                               const base64 = reader.result as string;
                               try {
                                 toast.loading("Uploading photo...", { id: "upload-photo" });
-                                const res = await uploadPhotoFn({ base64, fileName: file.name });
+                                const res = await uploadPhotoFn({ data: { base64, fileName: file.name } });
                                 if (res.url) {
                                   setHero({ ...hero, photo_url: res.url });
                                   toast.success("Photo uploaded successfully!", { id: "upload-photo" });
@@ -1328,6 +1400,161 @@ function AdminPage() {
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+
+          {/* ACHIEVEMENTS TAB */}
+          <TabsContent value="achievements">
+            <div className="grid gap-6 lg:grid-cols-[400px_1fr]">
+              <div className="glass-strong rounded-3xl p-6 space-y-4 h-fit">
+                <h3 className="font-display text-lg font-bold text-white flex items-center justify-between">
+                  <span>
+                    {editingAchievementIndex !== null ? "Edit Achievement" : "Add Achievement"}
+                  </span>
+                  {editingAchievementIndex !== null && (
+                    <button
+                      onClick={() => {
+                        setEditingAchievementIndex(null);
+                        setAchievementForm({
+                          title: "",
+                          category: "",
+                          description: "",
+                        });
+                      }}
+                      className="text-xs text-muted-foreground hover:text-white underline cursor-pointer"
+                    >
+                      Cancel
+                    </button>
+                  )}
+                </h3>
+
+                <div className="space-y-4">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="a-title">Title</Label>
+                    <Input
+                      id="a-title"
+                      value={achievementForm.title}
+                      onChange={(e) =>
+                        setAchievementForm({ ...achievementForm, title: e.target.value })
+                      }
+                      placeholder="e.g. Flipkart GRiD 8.0 — Semi-Finalist"
+                      className="bg-white/5 border-white/10"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="a-cat">Category / Badge</Label>
+                    <Input
+                      id="a-cat"
+                      value={achievementForm.category}
+                      onChange={(e) =>
+                        setAchievementForm({ ...achievementForm, category: e.target.value })
+                      }
+                      placeholder="e.g. National Hackathon, Problem Solving, Leadership"
+                      className="bg-white/5 border-white/10"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="a-desc">Description</Label>
+                    <Textarea
+                      id="a-desc"
+                      rows={4}
+                      value={achievementForm.description}
+                      onChange={(e) =>
+                        setAchievementForm({ ...achievementForm, description: e.target.value })
+                      }
+                      placeholder="Details of the achievement, impact, or metrics..."
+                      className="bg-white/5 border-white/10"
+                    />
+                  </div>
+                  <button
+                    onClick={handleAddOrUpdateAchievement}
+                    disabled={!achievementForm.title.trim()}
+                    className="w-full flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-white/90 disabled:opacity-60 cursor-pointer mt-2"
+                  >
+                    {editingAchievementIndex !== null ? (
+                      <Save className="h-4 w-4" />
+                    ) : (
+                      <Plus className="h-4 w-4" />
+                    )}
+                    {editingAchievementIndex !== null ? "Update Achievement" : "Add Achievement"}
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="font-display text-lg font-bold text-white">Achievements & Honors</h3>
+                <div className="space-y-3">
+                  {achievements.map((a, index) => (
+                    <div
+                      key={a.id}
+                      className="glass p-4 rounded-2xl flex flex-col sm:flex-row sm:items-start justify-between gap-4"
+                    >
+                      <div className="w-full">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-xs font-mono font-bold text-muted-foreground">
+                            #{index + 1}
+                          </span>
+                          <span className="font-display font-semibold text-white">{a.title}</span>
+                          {a.category && (
+                            <span className="rounded-full bg-white/5 border border-white/10 px-2.5 py-0.5 font-mono text-[10px] text-amber-300">
+                              {a.category}
+                            </span>
+                          )}
+                        </div>
+                        {a.description && (
+                          <p className="text-xs text-muted-foreground mt-2 leading-relaxed whitespace-pre-line">
+                            {a.description}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-1 shrink-0 w-full sm:w-auto justify-end sm:justify-start border-t border-white/5 pt-2 sm:border-t-0 sm:pt-0">
+                        <button
+                          onClick={() => moveAchievement(index, "up")}
+                          disabled={index === 0}
+                          className="p-2 text-muted-foreground hover:text-white disabled:opacity-30 cursor-pointer"
+                        >
+                          <ArrowUp className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => moveAchievement(index, "down")}
+                          disabled={index === achievements.length - 1}
+                          className="p-2 text-muted-foreground hover:text-white disabled:opacity-30 cursor-pointer"
+                        >
+                          <ArrowDown className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => {
+                            setEditingAchievementIndex(index);
+                            setAchievementForm({
+                              title: a.title,
+                              category: a.category ?? "",
+                              description: a.description ?? "",
+                            });
+                          }}
+                          className="p-2 text-muted-foreground hover:text-white cursor-pointer"
+                        >
+                          <Edit2 className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => {
+                            if (confirm("Delete achievement?"))
+                              setAchievements(achievements.filter((_, i) => i !== index));
+                          }}
+                          className="p-2 text-muted-foreground hover:text-red-400 cursor-pointer"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                  {achievements.length === 0 && (
+                    <div className="glass p-8 rounded-2xl text-center text-muted-foreground text-sm">
+                      No achievements added yet.
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

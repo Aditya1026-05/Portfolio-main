@@ -4,6 +4,7 @@ import {
   projectsData,
   skillGroupsData,
   timelineItemsData,
+  achievementsData,
 } from "@/data/portfolio";
 
 export type ProjectRow = {
@@ -39,12 +40,22 @@ export type TimelineRow = {
   certificate_url: string | null;
 };
 
+export type AchievementRow = {
+  id: string;
+  title: string;
+  category?: string;
+  description?: string;
+  sort_order: number;
+};
+
 export type HeroContent = {
   headline1: string;
   headline2: string;
   tagline: string;
   available: boolean;
   email: string;
+  phone?: string;
+  location?: string;
   github: string;
   linkedin: string;
   leetcode?: string;
@@ -66,28 +77,31 @@ export type AboutContent = {
 };
 
 export const heroFallback: HeroContent = {
-  headline1: "Full Stack",
-  headline2: "& AI Engineer",
+  headline1: "AI Engineer",
+  headline2: "& Software Developer",
   tagline:
-    "Hi, I'm Aditya Tayal — I design and build scalable full-stack products, AI-powered systems, and interfaces that feel effortless to use.",
+    "Hi, I'm Aditya Tayal — an AI/ML enthusiast and Full-Stack Developer passionate about building intelligent applications that solve real-world problems. Experienced in Python, C++, FastAPI, Django, RAG, and LLM orchestration.",
   available: true,
   email: "adityatayal2610@gmail.com",
-  github: "https://github.com",
-  linkedin: "https://linkedin.com",
+  phone: "+91-8847660891",
+  location: "Patiala, Punjab",
+  github: "https://github.com/Aditya1026-05",
+  linkedin: "https://www.linkedin.com/in/aditya0898/",
+  leetcode: "https://leetcode.com/u/Aditya1026_/",
   photo_url: "/aditya.jpg",
-  photo_scale: 1.0,
-  photo_position_y: 15,
+  photo_scale: 1.46,
+  photo_position_y: 0,
 };
 
 export const aboutFallback: AboutContent = {
-  heading: "Engineer with a designer's eye",
+  heading: "About Me",
   paragraph1:
-    "I build scalable full-stack applications, AI-powered solutions, and modern web experiences — solving real-world problems through software engineering, machine learning, and intuitive user interfaces.",
+    "I develop AI-powered applications that bridge research and real-world usability. Whether it's designing RAG pipelines with LangChain and Groq, building LLM orchestration layers with tool/function calling, or deploying production-ready APIs with FastAPI and Docker on AWS, I focus on scalable systems with measurable impact.",
   paragraph2:
-    "Currently pursuing B.Tech in Electronics and Communication Engineering at Thapar Institute. I care deeply about craft — the difference between something that works and something that feels right.",
-  location: "Based in India · Available globally",
-  initials: "AT",
-  handle: "aditya.dev",
+    "Currently pursuing B.Tech in Electronics & Communication Engineering at Thapar Institute of Engineering and Technology (2023 – 2027). When I'm not training models or architecting backend services, I solve DSA problems, contribute to student leadership, and build tools that empower users.",
+  location: "Patiala, Punjab · Available globally",
+  initials: "ADITYA",
+  handle: "Aditya2610_",
 };
 
 export function useSiteContent<T>(key: string, fallback: T): T {
@@ -107,3 +121,8 @@ export function useSkillGroups() {
 export function useTimeline() {
   return { data: timelineItemsData as TimelineRow[], isLoading: false };
 }
+
+export function useAchievements() {
+  return { data: ((achievementsData as AchievementRow[]) || []), isLoading: false };
+}
+
